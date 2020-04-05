@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Button, Form, FormGroup, Label, Input, Container, Navbar } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, Container, Nav, NavItem } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { useDispatch } from 'react-redux';
@@ -46,7 +46,15 @@ function AddFish() {
         <div className="pageAddfish" >
             <Container>
                 <Form>
-                    <Navbars />
+                    <Row>
+                        <Col align="left">
+                            <Nav className="ml-auto">
+                                <NavItem> <a href="/datafish" className="text_nav"> Home </a> <span>&nbsp;</span>/ </NavItem>
+                                <NavItem> <a href="/addfish" className="text_nav1"> <span>&nbsp;</span>Add data</a> </NavItem>
+                            </Nav>
+                        </Col>
+                        <Navbars />
+                    </Row>
                     <Row>
                         <Col>
                             <FormGroup align="center">
