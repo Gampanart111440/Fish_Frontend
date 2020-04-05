@@ -5,7 +5,7 @@ body {
 }
 @font-face {
   font-family: kanitLight;
-  src: url(./fonts/Kanit-Light.ttf);
+  src: url(./fonts/Kanit-Regular.ttf);
 }
 * {
   -webkit-box-sizing: border-box;

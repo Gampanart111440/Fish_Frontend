@@ -17,12 +17,13 @@ function Login() {
     password: ""
   })
 
+  const [message, setMessage] = useState('')
+
   useEffect(() => {
     if (psuPass.id) {
       history.push('/datafish')
       let datauser = psuPass.id + " : " + psuPass.name + " " + psuPass.surname
       localStorage.setItem('datauser', datauser)
-      alert('This is a success login');
     }
     if (localStorage.getItem('datauser') !== null) {
       history.push('/datafish')
@@ -33,7 +34,16 @@ function Login() {
   }, [psuPass])
 
   const sendData = () => {
-    ListAction.psuLogin(userdata)
+    if (userdata.username && userdata.password) {
+      ListAction.psuLogin(userdata)
+    } if (!psuPass.id) {
+      setTimeout(() => {
+        setMessage("Incorrect user ID or password")
+      }, 3500)
+    }
+    else {
+      setMessage("Incorrect user ID or password")
+    }
   }
 
   return (
@@ -54,11 +64,11 @@ function Login() {
                   <Label className="textLabel">Password</Label>
                 </div>
                 <Input className="ip1" type="password" name="password" onChange={(e) => setUser({ ...userdata, password: e.target.value })} placeholder="Password" />
+                <p className="message">{message}</p>
                 <Button className="bt1" style={{ width: "100%", marginTop: "50px" }}
                   onClick={() => {
                     sendData()
                   }}>LOGIN</Button>
-
               </FormGroup>
             </Col>
           </Row>

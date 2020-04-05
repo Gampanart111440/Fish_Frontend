@@ -1,14 +1,14 @@
 .pageLogin {
-  background-color: rgb(19, 228, 235);
+  background-color: rgb(92, 209, 255);
   min-height: 100vh;
-  padding-top: 180px;
-  padding-bottom: 200px;
 }
 .textHead {
-  color: rgb(96, 97, 97);
+  color: rgb(0, 9, 92);
+  letter-spacing: 3px;
   font-size: 50px;
   font-weight: bolder;
   text-align: center;
+  margin-top: 150px;
   margin-bottom: 30px;
 }
 .ip1 {
@@ -25,4 +25,9 @@
 .formIP {
   text-align: start;
   margin-left: 330px;
+}
+.message {
+  color: red;
+  font-size: 15px;
+  margin: 0px;
 }
