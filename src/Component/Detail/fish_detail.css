@@ -1,0 +1,8 @@
+.pageWel {
+  background-color: rgb(129, 233, 219);
+  min-height: 100vh;
+  padding-top: 50px;
+}
+.textWel {
+  text-align: center;
+}
