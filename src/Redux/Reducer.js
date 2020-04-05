@@ -1,5 +1,4 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
-import logger from 'redux-logger';
 import thunk from 'redux-thunk'
 import axios from "axios";
 
@@ -31,7 +30,6 @@ const loading = false
 export const listAction = {
     psuLogin: (login) => async (dispatch) => {
         const result = await axios.post(`https://fish-species.herokuapp.com/login`, { ...login });
-        console.log(result.data.GetStudentDetailsResult);
         const [id, name, surname] = [...result.data.GetStudentDetailsResult.string]
         dispatch({ type: 'LOGIN', id: id, name: name, surname: surname })
     },
@@ -176,6 +174,6 @@ const rootReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const Reducer = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)))
+const Reducer = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 export default Reducer
