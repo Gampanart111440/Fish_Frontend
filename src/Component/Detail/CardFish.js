@@ -31,7 +31,7 @@ function CardFish() {
                                         <CardSubtitle>Scientific name: <p>{item.scientific_name}</p></CardSubtitle>
                                         <CardText>Description: <p>{item.fish_detail}</p></CardText>
                                     </CardBody>
-                                    <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} color="info">Update</Button>
+                                    <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} color="warning">Edit</Button>
                                     {
                                         item.id > 0 ?
                                             <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "20px" }} onClick={() => {
