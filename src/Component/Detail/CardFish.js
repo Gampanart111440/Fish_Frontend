@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './fish_detail.css';
 import {
     Card, CardImg, CardText, CardBody,
@@ -8,7 +8,6 @@ import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { useDispatch, useSelector } from 'react-redux';
 function CardFish() {
-
     const fishReduc = useSelector(state => state.fishReduc)
     const ListAction = bindActionCreators(listAction, useDispatch())
 
@@ -32,6 +31,17 @@ function CardFish() {
                                         <CardSubtitle>Scientific name: <p>{item.scientific_name}</p></CardSubtitle>
                                         <CardText>Description: <p>{item.fish_detail}</p></CardText>
                                     </CardBody>
+                                    <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} color="info">Update</Button>
+                                    {
+                                        item.id > 0 ?
+                                            <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "20px" }} onClick={() => {
+                                                ListAction.deleteFish(item.id)
+                                                setTimeout(() => {
+                                                    window.location.reload()
+                                                }, 1500)
+                                            }} color="danger">Delete</Button> :
+                                            <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "20px" }} color="danger" className="bt3">Don't Delete</Button>
+                                    }
                                 </Card>
                             </Col>
                         </div>

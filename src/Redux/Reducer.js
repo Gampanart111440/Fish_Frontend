@@ -46,7 +46,7 @@ export const listAction = {
         dispatch({ type: "ADD_FISH", data_fish: { ...form } })
     },
     deleteFish: (index) => async (dispatch) => {
-        await axios.delete(`https://fish-species.herokuapp.com/delete/${index.id}`, index)
+        await axios.delete(`https://fish-species.herokuapp.com/delete/${index}`, index)
         dispatch({ type: "DELETE_FISH", id: index.id })
     },
     updateFish: (data_fish) => async (dispatch) => {
@@ -99,7 +99,7 @@ const fishReducer = (data = [], action) => {
         case "ADD_FISH":
             return [...data, action.data_fish]
         case "DELETE_FISH":
-            return data.filter(data_fish => +action.id !== +data_fish.id)
+            return data.filter(data_fish => + action.id !== + data_fish.id)
         case "UPDATE_FISH":
             return data.map(data_fish => {
                 if (+data_fish.id === +action.id)
