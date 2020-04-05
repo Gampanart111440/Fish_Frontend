@@ -13,7 +13,8 @@ const fishForm = {
     local_name: '',
     common_name: '',
     scientific_name: '',
-    image: ''
+    image: '',
+    fish_detail: ''
 }
 
 const getFish = {
@@ -21,14 +22,15 @@ const getFish = {
     common_name: '',
     scientific_name: '',
     image: '',
+    fish_detail: '',
     id: 0
 }
 
-const loadding = false
+const loading = false
 
 export const listAction = {
     psuLogin: (login) => async (dispatch) => {
-        const result = await axios.post(`https://fish-specail.herokuapp.com/login`, { ...login });
+        const result = await axios.post(`https://fish-species.herokuapp.com/login`, { ...login });
         console.log(result.data.GetStudentDetailsResult);
         const [id, name, surname] = [...result.data.GetStudentDetailsResult.string]
         dispatch({ type: 'LOGIN', id: id, name: name, surname: surname })
@@ -37,26 +39,26 @@ export const listAction = {
         dispatch({ type: "LOGOUT" })
     },
     getFish: () => async (dispatch) => {
-        const response = await axios.get(`https://fish-specail.herokuapp.com/datafish`)
+        const response = await axios.get(`https://fish-species.herokuapp.com/datafish`)
         const responseBody = await response.data;
         dispatch({ type: "GET_FISH", data_fishs: responseBody });
     },
     addFish: (form) => async (dispatch) => {
-        await axios.post(`https://fish-specail.herokuapp.com/fish/`, { ...form })
+        await axios.post(`https://fish-species.herokuapp.com/fish/`, { ...form })
         dispatch({ type: "ADD_FISH", data_fish: { ...form } })
     },
     deleteFish: (index) => async (dispatch) => {
-        await axios.delete(`https://fish-specail.herokuapp.com/delete/${index.id}`, index)
+        await axios.delete(`https://fish-species.herokuapp.com/delete/${index.id}`, index)
         dispatch({ type: "DELETE_FISH", id: index.id })
     },
     updateFish: (data_fish) => async (dispatch) => {
-        await axios.put(`https://fish-specail.herokuapp.com/update/${data_fish.id}`, data_fish)
+        await axios.put(`https://fish-species.herokuapp.com/update/${data_fish.id}`, data_fish)
         dispatch({ type: 'UPDATE_FISH', data_fish: data_fish, id: data_fish.id })
     },
     showFish: (id) => async (dispatch) => {
         dispatch({ type: 'CHANGE_LOADDING' })
         axios
-            .get(`https://fish-specail.herokuapp.com/datafish/${id}`)
+            .get(`https://fish-species.herokuapp.com/datafish/${id}`)
             .then(res => {
                 dispatch({ type: 'CHANGE_FISH', fish: res.data })
             })
@@ -68,6 +70,7 @@ export const listAction = {
     change_common_name: (s) => ({ type: 'CHANGE_COMMON', common_name: s }),
     change_scientific_name: (s) => ({ type: 'CHANGE_SCIENT', scientific_name: s }),
     change_image: (s) => ({ type: 'CHANGE_IMAGE', image: s }),
+    change_fish_detail: (s) => ({ type: 'CHANGE_DETAIL', fish_detail: s })
 }
 
 const loginReducer = (data = loginForm, action) => {
@@ -133,6 +136,11 @@ const formReducer = (data = fishForm, action) => {
                 ...data,
                 name: action.image
             }
+        case "CHANGE_DETAIL":
+            return {
+                ...data,
+                name: action.fish_detail
+            }
         default:
             return data
     }
@@ -149,7 +157,7 @@ const getFishReducer = (data = getFish, action) => {
     }
 }
 
-const loaddingReducer = (data = loadding, action) => {
+const loadingReducer = (data = loading, action) => {
     switch (action.type) {
         case "CHANGE_LOADDING":
             return !data
@@ -163,7 +171,7 @@ const rootReducer = combineReducers({
     form: formReducer,
     fishReduc: fishReducer,
     getFish: getFishReducer,
-    loadding: loaddingReducer
+    loading: loadingReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
