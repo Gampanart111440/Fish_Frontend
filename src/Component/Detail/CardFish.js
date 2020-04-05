@@ -18,17 +18,17 @@ function CardFish() {
 
     return (
         <div>
-            <h1 className="textWel">Fish Species</h1>
+            <h1 className="textWel">Welcome Fish Species</h1>
             <Row>{
-                fishReduc.map((p, index) => (
-                    <div key={index} style={{ margin: 20 }} >
+                fishReduc.map((item, idx) => (
+                    <div key={idx} style={{ margin: 20 }} >
                         <Col>
                             <Card style={{ width: "300px" }}>
-                                <CardImg top width="100%" className="pic" src={p.image} alt="Card image cap" />
+                                <CardImg top width="100%" className="pic" src={item.image} alt="Card image caitem" />
                                 <CardBody>
-                                    <CardTitle><h1>{p.common_name}</h1></CardTitle>
-                                    <CardSubtitle><h4>{p.scientific_name}</h4></CardSubtitle>
-                                    <CardText><p>{p.fish_detail}</p></CardText>
+                                    <CardTitle><h1>{item.common_name}</h1></CardTitle>
+                                    <CardSubtitle><h4>{item.scientific_name}</h4></CardSubtitle>
+                                    <CardText><p>{item.fish_detail}</p></CardText>
                                 </CardBody>
                             </Card>
                         </Col>

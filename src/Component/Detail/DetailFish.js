@@ -34,9 +34,8 @@ function DetailFish() {
   return (
     <div className="pageWel">
       <Container>
-        <h1 className="textWel"> Welcome</h1>
         <Row>
-          <Col>
+          <Col align="right">
             <h5>{username}</h5>
             <Button color="danger" onClick={psuLogouts}>Logout</Button>
           </Col>
