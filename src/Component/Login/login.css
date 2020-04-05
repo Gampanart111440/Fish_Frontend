@@ -1,0 +1,28 @@
+.pageLogin {
+  background-color: rgb(19, 228, 235);
+  min-height: 100vh;
+  padding-top: 180px;
+  padding-bottom: 200px;
+}
+.textHead {
+  color: rgb(96, 97, 97);
+  font-size: 50px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.ip1 {
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.textLabel {
+  font-size: 20px;
+}
+.bt1 {
+  width: 400px !important;
+}
+.formIP {
+  text-align: start;
+  margin-left: 330px;
+}
