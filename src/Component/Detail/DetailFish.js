@@ -19,9 +19,11 @@ function DetailFish() {
     }
   }, [username])
 
-  return (
-    <div className="pageWel">
-      <Container>
+  const showNavbars = () => {
+    let ids = localStorage.getItem('datauser')
+    ids = ids.split(':')
+    if ((ids[0] == 5935512089)) {
+      return (
         <Row>
           <Col align="left">
             <Nav className="ml-auto">
@@ -31,6 +33,23 @@ function DetailFish() {
           </Col>
           <Navbars />
         </Row>
+      )
+    }
+    else {
+      return (
+        <Row>
+          <Col>
+          </Col>
+          <Navbars />
+        </Row>
+      )
+    }
+  }
+
+  return (
+    <div className="pageWel">
+      <Container>
+        {showNavbars()}
         <Row>
           <Col>
             <CardFish />
