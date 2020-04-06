@@ -1,19 +1,36 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './fish_detail.css';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Row, Col, Button
+    CardTitle, CardSubtitle, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label
 } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { useDispatch, useSelector } from 'react-redux';
 function CardFish() {
     const fishReduc = useSelector(state => state.fishReduc)
+    const getFish = useSelector(state => state.getFish)
     const ListAction = bindActionCreators(listAction, useDispatch())
+    const [modal, setModal] = useState(false);
+    const [detail, setDetail] = useState({
+        id: 0,
+        local_name: "",
+        common_name: "",
+        scientific_name: "",
+        image: "",
+        fish_detail: ""
+    })
+
+    const toggle = () => setModal(!modal);
 
     useEffect(() => {
         ListAction.getFish()
-    }, [])
+    }, [getFish])
+
+    const updateCard = () => {
+        ListAction.getFish()
+        ListAction.updateFish({ ...detail })
+    }
 
     const showCard = () => {
         let ids = localStorage.getItem('datauser')
@@ -33,7 +50,52 @@ function CardFish() {
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
                                             <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span><p>{item.fish_detail}</p></CardText>
                                         </CardBody>
-                                        <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} color="warning">Edit</Button>
+                                        <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} onClick={toggle} color="warning">Edit</Button>
+                                        <Modal isOpen={modal} toggle={toggle}>
+                                            <ModalHeader toggle={toggle}>Update Data Fish</ModalHeader>
+                                            <ModalBody>
+                                                <FormGroup>
+                                                    <Input className="ip4" type="hidden" value={item.id}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, id: e.target.value })
+                                                        }} />
+                                                    <Label className="textLabel1">Local Name</Label>
+                                                    <Input className="ip4" type="text" value={item.local_name}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, local_name: e.target.value })
+                                                        }} />
+                                                    <Label className="textLabel1">Common Name</Label>
+                                                    <Input className="ip4" type="text" value={item.common_name}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, common_name: e.target.value })
+                                                        }} />
+                                                    <Label className="textLabel1">Scientific Name</Label>
+                                                    <Input className="ip4" type="text" value={item.scientific_name}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, scientific_name: e.target.value })
+                                                        }} />
+                                                    <Label className="textLabel1">Link Image</Label>
+                                                    <Input className="ip5" type="textarea" value={item.image}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, image: e.target.value })
+                                                        }} />
+                                                    <Label className="textLabel1">Description</Label>
+                                                    <Input className="ip5" type="textarea" value={item.fish_detail}
+                                                        onChange={(e) => {
+                                                            setDetail({ ...detail, fish_detail: e.target.value })
+                                                        }} />
+                                                </FormGroup>
+                                            </ModalBody>
+                                            <ModalFooter>
+                                                <Button color="primary" onClick={() => {
+                                                    updateCard()
+                                                    setTimeout(() => {
+                                                        window.location.reload()
+                                                    }, 1500)
+                                                }}>Update</Button>
+                                                <Button color="secondary" onClick={toggle}>Cancel</Button>
+                                            </ModalFooter>
+                                        </Modal>
                                         {
                                             item.id > 0 ?
                                                 <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "20px" }} onClick={() => {

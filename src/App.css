@@ -2,6 +2,7 @@ html,
 body {
   font-family: "Kanit", sans-serif;
   scroll-behavior: smooth;
+  padding-right: 0px !important;
 }
 @font-face {
   font-family: kanitLight;
