@@ -2,3 +2,13 @@
   color: rgb(104, 104, 104);
   text-decoration: none;
 }
+.textRole1 {
+  color: rgb(40, 0, 133);
+  font-weight: bolder;
+  margin-right: 10px;
+}
+.textRole2 {
+  color: rgb(226, 0, 0);
+  font-weight: bolder;
+  margin-right: 10px;
+}

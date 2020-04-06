@@ -32,12 +32,34 @@ function Navbar() {
         }
     }, [username])
 
+    const showRole = () => {
+        let ids = localStorage.getItem('datauser')
+        ids = ids.split(':')
+        if (ids[0] == 5935512089) {
+            return (
+                <div>
+                    <Col align="right">
+                        <h5><span className="textRole1">Admin</span> {username}</h5>
+                        <Button color="danger" onClick={psuLogouts}>Logout</Button>
+                    </Col>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <Col align="right">
+                        <h5><span className="textRole2">Guest user</span> {username}</h5>
+                        <Button color="danger" onClick={psuLogouts}>Logout</Button>
+                    </Col>
+                </div>
+            )
+        }
+    }
+
     return (
         <div>
-            <Col align="right">
-                <h5>{username}</h5>
-                <Button color="danger" onClick={psuLogouts}>Logout</Button>
-            </Col>
+            {showRole()}
         </div>
     )
 }
