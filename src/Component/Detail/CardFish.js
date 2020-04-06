@@ -28,10 +28,10 @@ function CardFish() {
                                     <Card style={{ width: "300px" }}>
                                         <CardImg top width="100%" className="pic" src={item.image} alt="Card image caitem" />
                                         <CardBody>
-                                            <CardTitle><h1>{item.common_name}</h1></CardTitle>
-                                            <CardTitle>Local name: <p>{item.local_name}</p></CardTitle>
-                                            <CardSubtitle>Scientific name: <p>{item.scientific_name}</p></CardSubtitle>
-                                            <CardText>Description: <p>{item.fish_detail}</p></CardText>
+                                            <CardTitle><h1 style={{ fontSize: "25px" }}>{item.common_name}</h1></CardTitle>
+                                            <CardTitle>ชื่อท้องถิ่น : <p>{item.local_name}</p></CardTitle>
+                                            <CardSubtitle>ชื่อวิทยาศาสตร์ : <p>{item.scientific_name}</p></CardSubtitle>
+                                            <CardText>คำอธิบาย : <p>{item.fish_detail}</p></CardText>
                                         </CardBody>
                                         <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} color="warning">Edit</Button>
                                         {
@@ -62,10 +62,10 @@ function CardFish() {
                                     <Card style={{ width: "300px" }}>
                                         <CardImg top width="100%" className="pic" src={item.image} alt="Card image caitem" />
                                         <CardBody>
-                                            <CardTitle><h1>{item.common_name}</h1></CardTitle>
-                                            <CardTitle>Local name: <p>{item.local_name}</p></CardTitle>
-                                            <CardSubtitle>Scientific name: <p>{item.scientific_name}</p></CardSubtitle>
-                                            <CardText>Description: <p>{item.fish_detail}</p></CardText>
+                                            <CardTitle><h1 style={{ fontSize: "25px" }}>{item.common_name}</h1></CardTitle>
+                                            <CardTitle>ชื่อท้องถิ่น : <p>{item.local_name}</p></CardTitle>
+                                            <CardSubtitle>ชื่อวิทยาศาสตร์ : <p>{item.scientific_name}</p></CardSubtitle>
+                                            <CardText>คำอธิบาย : <p>{item.fish_detail}</p></CardText>
                                         </CardBody>
                                     </Card>
                                 </Col>
