@@ -21,17 +21,17 @@ function CardFish() {
         fish_detail: ""
     })
 
+    const toggle = () => setModal(!modal)
+
     useEffect(() => {
         ListAction.getFish()
     }, [getFish])
 
-    const updateCard = () => {
-        ListAction.getFish()
+    const updateCard = async () => {
+        await ListAction.getFish()
         setModal(false)
         ListAction.updateFish({ ...detail })
     }
-
-    const toggle = () => setModal(!modal)
 
     const modalCard = async (id) => {
         const detail = fishReduc.find(item => item.id === id)
@@ -113,9 +113,6 @@ function CardFish() {
                         <ModalFooter>
                             <Button color="primary" onClick={() => {
                                 updateCard()
-                                setTimeout(() => {
-                                    window.location.reload()
-                                }, 1500)
                             }}>Update</Button>
                             <Button color="secondary" onClick={toggle}>Cancel</Button>
                         </ModalFooter>
