@@ -34,14 +34,8 @@ function CardFish() {
     const toggle = () => setModal(!modal)
 
     const modalCard = async (id) => {
-        const detail = fishReduc.map((item, idx) => {
-            if (id === item.id) {
-                return item
-            }
-            return null
-        })
+        const detail = fishReduc.find(item => item.id === id)
         await setDetail({ ...detail })
-        console.log(detail);
     }
 
     const showCard = () => {
