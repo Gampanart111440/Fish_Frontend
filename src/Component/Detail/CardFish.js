@@ -21,15 +21,27 @@ function CardFish() {
         fish_detail: ""
     })
 
-    const toggle = () => setModal(!modal);
-
     useEffect(() => {
         ListAction.getFish()
     }, [getFish])
 
     const updateCard = () => {
         ListAction.getFish()
+        setModal(false)
         ListAction.updateFish({ ...detail })
+    }
+
+    const toggle = () => setModal(!modal)
+
+    const modalCard = async (id) => {
+        const detail = fishReduc.map((item, idx) => {
+            if (id === item.id) {
+                return item
+            }
+            return null
+        })
+        await setDetail({ ...detail })
+        console.log(detail);
     }
 
     const showCard = () => {
@@ -48,54 +60,12 @@ function CardFish() {
                                             <CardTitle><h1 style={{ fontSize: "25px", fontWeight: "bold" }}>{item.common_name}</h1></CardTitle>
                                             <CardTitle><span style={{ fontWeight: "bold" }}>ชื่อท้องถิ่น :</span> <p>{item.local_name}</p></CardTitle>
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
-                                            <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span><p>{item.fish_detail}</p></CardText>
+                                            <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span>{item.fish_detail}</CardText>
                                         </CardBody>
-                                        <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} onClick={toggle} color="warning">Edit</Button>
-                                        <Modal isOpen={modal} toggle={toggle}>
-                                            <ModalHeader toggle={toggle}>Update Data Fish</ModalHeader>
-                                            <ModalBody>
-                                                <FormGroup>
-                                                    <Input className="ip4" type="hidden" value={item.id}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, id: e.target.value })
-                                                        }} />
-                                                    <Label className="textLabel1">Local Name</Label>
-                                                    <Input className="ip4" type="text" value={item.local_name}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, local_name: e.target.value })
-                                                        }} />
-                                                    <Label className="textLabel1">Common Name</Label>
-                                                    <Input className="ip4" type="text" value={item.common_name}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, common_name: e.target.value })
-                                                        }} />
-                                                    <Label className="textLabel1">Scientific Name</Label>
-                                                    <Input className="ip4" type="text" value={item.scientific_name}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, scientific_name: e.target.value })
-                                                        }} />
-                                                    <Label className="textLabel1">Link Image</Label>
-                                                    <Input className="ip5" type="textarea" value={item.image}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, image: e.target.value })
-                                                        }} />
-                                                    <Label className="textLabel1">Description</Label>
-                                                    <Input className="ip5" type="textarea" value={item.fish_detail}
-                                                        onChange={(e) => {
-                                                            setDetail({ ...detail, fish_detail: e.target.value })
-                                                        }} />
-                                                </FormGroup>
-                                            </ModalBody>
-                                            <ModalFooter>
-                                                <Button color="primary" onClick={() => {
-                                                    updateCard()
-                                                    setTimeout(() => {
-                                                        window.location.reload()
-                                                    }, 1500)
-                                                }}>Update</Button>
-                                                <Button color="secondary" onClick={toggle}>Cancel</Button>
-                                            </ModalFooter>
-                                        </Modal>
+                                        <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} onClick={() => {
+                                            setModal(true)
+                                            modalCard(item.id)
+                                        }} color="warning">Edit</Button>
                                         {
                                             item.id > 0 ?
                                                 <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "20px" }} onClick={() => {
@@ -111,6 +81,51 @@ function CardFish() {
                             </div>
                         ))
                     }
+                    <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader toggle={toggle}>Update Data Fish</ModalHeader>
+                        <ModalBody>
+                            <FormGroup>
+                                <Input className="ip4" type="hidden" value={detail.id}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, id: e.target.value })
+                                    }} />
+                                <Label className="textLabel1">Local Name</Label>
+                                <Input className="ip4" type="text" value={detail.local_name}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, local_name: e.target.value })
+                                    }} />
+                                <Label className="textLabel1">Common Name</Label>
+                                <Input className="ip4" type="text" value={detail.common_name}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, common_name: e.target.value })
+                                    }} />
+                                <Label className="textLabel1">Scientific Name</Label>
+                                <Input className="ip4" type="text" value={detail.scientific_name}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, scientific_name: e.target.value })
+                                    }} />
+                                <Label className="textLabel1">Link Image</Label>
+                                <Input className="ip5" type="textarea" value={detail.image}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, image: e.target.value })
+                                    }} />
+                                <Label className="textLabel1">Description</Label>
+                                <Input className="ip5" type="textarea" value={detail.fish_detail}
+                                    onChange={(e) => {
+                                        setDetail({ ...detail, fish_detail: e.target.value })
+                                    }} />
+                            </FormGroup>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={() => {
+                                updateCard()
+                                setTimeout(() => {
+                                    window.location.reload()
+                                }, 1500)
+                            }}>Update</Button>
+                            <Button color="secondary" onClick={toggle}>Cancel</Button>
+                        </ModalFooter>
+                    </Modal>
                 </Row>
             )
         }
