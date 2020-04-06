@@ -22,7 +22,7 @@ function DetailFish() {
   const showNavbars = () => {
     let ids = localStorage.getItem('datauser')
     ids = ids.split(':')
-    if ((ids[0] == 5935512089)) {
+    if (ids[0] == 5935512089) {
       return (
         <Row>
           <Col align="left">

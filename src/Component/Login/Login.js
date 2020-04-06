@@ -38,7 +38,7 @@ function Login() {
     } if (!psuPass.id) {
       setTimeout(() => {
         setMessage("Incorrect user ID or password")
-      }, 3500)
+      }, 4000)
     }
     else {
       setMessage("Incorrect user ID or password")
