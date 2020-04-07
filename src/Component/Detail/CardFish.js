@@ -63,7 +63,7 @@ function CardFish() {
                                             <CardTitle><span style={{ fontWeight: "bold" }}>ชื่อท้องถิ่น :</span> <p>{item.local_name}</p></CardTitle>
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
                                             <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span>{item.fish_detail}</CardText>
-                                            <h5>{item.like} <span><img src={heart} width="20px" /></span></h5>
+                                            <h5>{item.like.toLocaleString('en')} <span><img src={heart} width="20px" /></span></h5>
                                             <Button className="btlike" onClick={() => {
                                                 addLike(item.id)
                                             }}>Like </Button>
@@ -146,7 +146,7 @@ function CardFish() {
                                             <CardTitle><span style={{ fontWeight: "bold" }}>ชื่อท้องถิ่น : </span><p>{item.local_name}</p></CardTitle>
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
                                             <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span><p>{item.fish_detail}</p></CardText>
-                                            <h5>{item.like} <span><img src={heart} width="20px" /></span></h5>
+                                            <h5>{item.like.toLocaleString('en')} <span><img src={heart} width="20px" /></span></h5>
                                             <Button className="btlike" onClick={() => {
                                                 addLike(item.id)
                                             }}>Like </Button>
