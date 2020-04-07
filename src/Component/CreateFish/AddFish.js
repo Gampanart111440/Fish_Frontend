@@ -18,7 +18,8 @@ function AddFish() {
         common_name: "",
         scientific_name: "",
         image: "",
-        fish_detail: ""
+        fish_detail: "",
+        like: 0
     })
 
     useEffect(() => {
@@ -83,6 +84,7 @@ function AddFish() {
                                     <Label className="textLabel">Description</Label>
                                 </div>
                                 <Input className="ip3" type="textarea" autocomplete="off" name="fish_detail" onChange={(e) => setForm({ ...userform, fish_detail: e.target.value })} placeholder="Description" />
+                                <Input className="ip2" type="hidden" autocomplete="off" name="id" onChange={(e) => setForm({ ...userform, like: e.target.value })} />
                                 <p className="message">{message}</p>
                                 <Button className="bt2" style={{ width: "100%", marginTop: "50px" }}
                                     onClick={() => {

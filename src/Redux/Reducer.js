@@ -13,7 +13,8 @@ const fishForm = {
     common_name: '',
     scientific_name: '',
     image: '',
-    fish_detail: ''
+    fish_detail: '',
+    like: 0
 }
 
 const getFish = {
@@ -22,7 +23,8 @@ const getFish = {
     scientific_name: '',
     image: '',
     fish_detail: '',
-    id: 0
+    id: 0,
+    like: 0
 }
 
 const loading = false
@@ -53,6 +55,10 @@ export const listAction = {
         await axios.put(`https://fish-species.herokuapp.com/update/${data_fish.id}`, data_fish)
         dispatch({ type: 'UPDATE_FISH', data_fish: data_fish, id: data_fish.id })
     },
+    updateLike: (count) => async (dispatch) => {
+        await axios.put(`https://fish-species.herokuapp.com/update/${count.id}`, count)
+        dispatch({ type: 'UPDATE_LIKE', like: count })
+    },
     showFish: (id) => async (dispatch) => {
         dispatch({ type: 'CHANGE_LOADDING' })
         axios
@@ -68,7 +74,8 @@ export const listAction = {
     change_common_name: (s) => ({ type: 'CHANGE_COMMON', common_name: s }),
     change_scientific_name: (s) => ({ type: 'CHANGE_SCIENT', scientific_name: s }),
     change_image: (s) => ({ type: 'CHANGE_IMAGE', image: s }),
-    change_fish_detail: (s) => ({ type: 'CHANGE_DETAIL', fish_detail: s })
+    change_fish_detail: (s) => ({ type: 'CHANGE_DETAIL', fish_detail: s }),
+    change_like: (s) => ({ type: 'CHANGE_LIKE', like: s })
 }
 
 const loginReducer = (data = loginForm, action) => {
@@ -107,6 +114,13 @@ const fishReducer = (data = [], action) => {
                 else
                     return data_fish
             })
+        case "UPDATE_FISH":
+            return data.map(data_fish => {
+                if (+data_fish.id === +action.id)
+                    return action.data_fish
+                else
+                    return data_fish
+            })
         default:
             return data
     }
@@ -138,6 +152,11 @@ const formReducer = (data = fishForm, action) => {
             return {
                 ...data,
                 name: action.fish_detail
+            }
+        case "CHANGE_LIKE":
+            return {
+                ...data,
+                name: action.like
             }
         default:
             return data

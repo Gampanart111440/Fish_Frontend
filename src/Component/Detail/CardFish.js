@@ -7,6 +7,7 @@ import {
 import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { useDispatch, useSelector } from 'react-redux';
+import heart from '../../Image/heart.png'
 function CardFish() {
     const fishReduc = useSelector(state => state.fishReduc)
     const getFish = useSelector(state => state.getFish)
@@ -18,7 +19,8 @@ function CardFish() {
         common_name: "",
         scientific_name: "",
         image: "",
-        fish_detail: ""
+        fish_detail: "",
+        like: 0
     })
 
     const toggle = () => setModal(!modal)
@@ -38,6 +40,12 @@ function CardFish() {
         await setDetail({ ...detail })
     }
 
+    const addLike = async (id) => {
+        const detail = fishReduc.find(item => item.id === id)
+        await setDetail({ ...detail, like: detail.like++ })
+        ListAction.updateLike({ ...detail })
+    }
+
     const showCard = () => {
         let ids = localStorage.getItem('datauser')
         ids = ids.split(':')
@@ -55,6 +63,10 @@ function CardFish() {
                                             <CardTitle><span style={{ fontWeight: "bold" }}>ชื่อท้องถิ่น :</span> <p>{item.local_name}</p></CardTitle>
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
                                             <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span>{item.fish_detail}</CardText>
+                                            <h5>{item.like} <span><img src={heart} width="20px" /></span></h5>
+                                            <Button className="btlike" onClick={() => {
+                                                addLike(item.id)
+                                            }}>Like </Button>
                                         </CardBody>
                                         <Button style={{ marginLeft: "10px", marginRight: "10px", marginBottom: "10px" }} onClick={() => {
                                             setModal(true)
@@ -134,6 +146,10 @@ function CardFish() {
                                             <CardTitle><span style={{ fontWeight: "bold" }}>ชื่อท้องถิ่น : </span><p>{item.local_name}</p></CardTitle>
                                             <CardSubtitle><span style={{ fontWeight: "bold" }}>ชื่อวิทยาศาสตร์ : </span><p>{item.scientific_name}</p></CardSubtitle>
                                             <CardText><span style={{ fontWeight: "bold" }}>คำอธิบาย : </span><p>{item.fish_detail}</p></CardText>
+                                            <h5>{item.like}</h5>
+                                            <Button className="btlike" onClick={() => {
+                                                addLike(item.id)
+                                            }}>Like </Button>
                                         </CardBody>
                                     </Card>
                                 </Col>
