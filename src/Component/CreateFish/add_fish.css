@@ -9,7 +9,6 @@
   font-size: 50px;
   font-weight: bolder;
   text-align: center;
-  margin-top: 20px;
   margin-bottom: 30px;
 }
 .ip2 {
@@ -33,7 +32,7 @@
 }
 .text_nav {
   font-size: 20px;
-  color: blueviolet;
+  color: rgb(151, 0, 144);
 }
 .text_nav1 {
   font-size: 20px;

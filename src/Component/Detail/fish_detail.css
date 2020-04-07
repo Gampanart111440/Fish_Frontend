@@ -1,5 +1,7 @@
 .pageWel {
-  background-color: rgb(87, 250, 196);
+  /* background-color: rgb(87, 250, 196); */
+  background-image: url("../../Image/sea.jpg");
+  background-size: cover;
   min-height: 100vh;
   padding-top: 20px;
 }
