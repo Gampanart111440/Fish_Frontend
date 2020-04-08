@@ -17,6 +17,7 @@ function Navbar() {
         ListAction.psuLogout()
         if (psuPass.id === "") {
             localStorage.removeItem('datauser')
+            localStorage.removeItem('ids')
             history.push('/')
         }
     }
@@ -33,9 +34,8 @@ function Navbar() {
     }, [username])
 
     const showRole = () => {
-        let ids = localStorage.getItem('datauser')
-        ids = ids.split(':')
-        if (ids[0] == 5935512089) {
+        let ids = localStorage.getItem('ids')
+        if (ids == 5935512089) {
             return (
                 <div>
                     <Col align="right">

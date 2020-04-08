@@ -24,9 +24,9 @@ function AddFish() {
 
     useEffect(() => {
         let user = localStorage.getItem('datauser');
-        let ids = user.split(':')
+        let ids = localStorage.getItem('ids')
         setUsername(user)
-        if (username !== null && ids[0] == 5935512089) {
+        if (username !== null && ids == 5935512089) {
             history.push('/addfish')
         }
         else {

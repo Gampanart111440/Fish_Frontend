@@ -23,6 +23,7 @@ function Login() {
       history.push('/datafish')
       let datauser = psuPass.id + " : " + psuPass.name + " " + psuPass.surname
       localStorage.setItem('datauser', datauser)
+      localStorage.setItem('ids', psuPass.id)
     }
     if (localStorage.getItem('datauser') !== null) {
       history.push('/datafish')
@@ -35,13 +36,14 @@ function Login() {
   const sendData = () => {
     if (userdata.username && userdata.password) {
       ListAction.psuLogin(userdata)
-    } if (!psuPass.id) {
-      setTimeout(() => {
-        setMessage("Incorrect user ID or password")
-      }, 4000)
     }
     else {
       setMessage("Incorrect user ID or password")
+    }
+    if (!psuPass.id) {
+      setTimeout(() => {
+        setMessage("Incorrect user ID or password")
+      }, 4000)
     }
   }
 
