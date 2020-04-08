@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './fish_detail.css';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label
+    CardTitle, CardSubtitle, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label, Spinner
 } from 'reactstrap';
 import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
@@ -11,6 +11,7 @@ import heart from '../../Image/heart.png'
 function CardFish() {
     const fishReduc = useSelector(state => state.fishReduc)
     const getFish = useSelector(state => state.getFish)
+    const loading = useSelector(state => state.loading)
     const ListAction = bindActionCreators(listAction, useDispatch())
     const [modal, setModal] = useState(false);
     const [detail, setDetail] = useState({
@@ -164,7 +165,13 @@ function CardFish() {
     return (
         <div>
             <h1 className="textWel">Welcome Fish Species</h1>
-            {showCard()}
+            {
+                loading !== true ? <div>{showCard()} </div> :
+                    <div align="center" style={{ marginTop: "150px" }}>
+                        <Spinner className="spin" />
+                        <h5 style={{ color: "white" }}>กำลังโหลดข้อมูล</h5>
+                    </div>
+            }
         </div>
     )
 }

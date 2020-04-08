@@ -32,9 +32,15 @@
   margin-bottom: 5px;
 }
 .btlike {
-  background-color: 	#2E5894;
+  background-color: #2e5894;
   border: none;
 }
 .btlike:hover {
   background-color: rgb(214, 77, 77);
+}
+.spin {
+  color: rgb(146, 1, 127);
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 15px;
 }

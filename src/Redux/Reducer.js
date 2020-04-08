@@ -39,9 +39,15 @@ export const listAction = {
         dispatch({ type: "LOGOUT" })
     },
     getFish: () => async (dispatch) => {
-        const response = await axios.get(`https://fish-species.herokuapp.com/datafish`)
-        const responseBody = await response.data;
-        dispatch({ type: "GET_FISH", data_fishs: responseBody });
+        dispatch({ type: 'CHANGE_LOADDING' })
+        axios
+            .get(`https://fish-species.herokuapp.com/datafish`)
+            .then(res => {
+                dispatch({ type: "GET_FISH", data_fishs: res.data });
+            })
+            .finally(() => {
+                dispatch({ type: 'CHANGE_LOADDING' })
+            })
     },
     addFish: (form) => async (dispatch) => {
         await axios.post(`https://fish-species.herokuapp.com/fish/`, { ...form })
@@ -58,17 +64,6 @@ export const listAction = {
     updateLike: (count) => async (dispatch) => {
         await axios.put(`https://fish-species.herokuapp.com/update/${count.id}`, count)
         dispatch({ type: 'UPDATE_LIKE', like: count })
-    },
-    showFish: (id) => async (dispatch) => {
-        dispatch({ type: 'CHANGE_LOADDING' })
-        axios
-            .get(`https://fish-species.herokuapp.com/datafish/${id}`)
-            .then(res => {
-                dispatch({ type: 'CHANGE_FISH', fish: res.data })
-            })
-            .finally(() => {
-                dispatch({ type: 'CHANGE_LOADDING' })
-            })
     },
     change_local_name: (s) => ({ type: 'CHANGE_LOCATION', local_name: s }),
     change_common_name: (s) => ({ type: 'CHANGE_COMMON', common_name: s }),
