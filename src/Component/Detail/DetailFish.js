@@ -11,7 +11,7 @@ function DetailFish() {
   useEffect(() => {
     let user = localStorage.getItem('datauser');
     setUsername(user)
-    if (username !== null) {
+    if (username !== null || localStorage.getItem('token') !== null) {
       history.push('/datafish')
     }
     else {
@@ -21,7 +21,7 @@ function DetailFish() {
 
   const showNavbars = () => {
     let ids = localStorage.getItem('ids')
-    if (ids == 5935512089) {
+    if (ids == 5935512089 || localStorage.getItem('name') == "GAMPANART") {
       return (
         <Row>
           <Col align="left">

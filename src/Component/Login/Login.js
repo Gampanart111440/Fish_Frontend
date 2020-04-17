@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import GoogleLogin from 'react-google-login';
 import './login.css';
 
 function Login() {
@@ -15,7 +16,6 @@ function Login() {
     username: "",
     password: ""
   })
-
   const [message, setMessage] = useState('')
 
   useEffect(() => {
@@ -25,7 +25,7 @@ function Login() {
       localStorage.setItem('datauser', datauser)
       localStorage.setItem('ids', psuPass.id)
     }
-    if (localStorage.getItem('datauser') !== null) {
+    if (localStorage.getItem('datauser') !== null || localStorage.getItem('token') !== null) {
       history.push('/datafish')
     }
     else {
@@ -44,6 +44,25 @@ function Login() {
       setTimeout(() => {
         setMessage("Incorrect user ID or password")
       }, 4000)
+    }
+  }
+
+  const responseGoogle = (response) => {
+    console.log(response);
+    
+    if (response) {
+      const token = response.accessToken
+      const name = response.profileObj.givenName
+      const username = response.profileObj.name
+      localStorage.setItem('token', token)
+      localStorage.setItem('name', name)
+      localStorage.setItem('username', username)
+    }
+    if (localStorage.getItem('token') !== null) {
+      history.push('/datafish')
+    }
+    else {
+      history.push('/')
     }
   }
 
@@ -71,6 +90,15 @@ function Login() {
                     sendData()
                   }}>LOGIN</Button>
               </FormGroup>
+              <div align="center">
+                <GoogleLogin
+                  className="googleAuth"
+                  clientId="681528916775-230uhg5ku0i2hofhlmj9g0klthmnvr0o.apps.googleusercontent.com"
+                  buttonText="LOGIN WITH GOOGLE"
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                />
+              </div>
             </Col>
           </Row>
         </Form>

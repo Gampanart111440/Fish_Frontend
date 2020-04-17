@@ -26,7 +26,7 @@ function AddFish() {
         let user = localStorage.getItem('datauser');
         let ids = localStorage.getItem('ids')
         setUsername(user)
-        if (username !== null && ids == 5935512089) {
+        if (username !== null && ids == 5935512089 || localStorage.getItem('name') == "GAMPANART") {
             history.push('/addfish')
         }
         else {
