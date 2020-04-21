@@ -42,3 +42,35 @@
   color: rgb(104, 104, 104);
   text-decoration: none;
 }
+
+@media only screen and (max-width: 480px) {
+  .textHead2 {
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .ip2 {
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .ip3 {
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .formIP2 {
+    margin-left: 10px;
+  }
+  .bt2 {
+    margin-top: 20px !important;
+    width: 300px !important;
+    height: 40px !important;
+  }
+  .text_nav {
+    font-size: 15px;
+  }
+  .text_nav1 {
+    font-size: 15px;
+  }
+}

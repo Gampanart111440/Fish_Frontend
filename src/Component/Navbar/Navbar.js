@@ -45,8 +45,8 @@ function Navbar() {
             return (
                 <div>
                     <Col align="right">
-                        <h5><span className="textRole1">Admin</span> {username !== null ? username : name}</h5>
-                        <Button color="danger" onClick={psuLogouts}>Logout</Button>
+                        <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
+                        <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
                     </Col>
                 </div>
             )
@@ -55,8 +55,8 @@ function Navbar() {
             return (
                 <div>
                     <Col align="right">
-                        <h5><span className="textRole2">Guest user</span> {username !== null ? username : name}</h5>
-                        <Button color="danger" onClick={psuLogouts}>Logout</Button>
+                        <h5 className="textName"><span className="textRole2">Guest user</span> {username}</h5>
+                        <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
                     </Col>
                 </div>
             )

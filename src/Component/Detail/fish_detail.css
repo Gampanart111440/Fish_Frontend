@@ -44,3 +44,23 @@
   height: 4rem;
   margin-bottom: 15px;
 }
+
+@media only screen and (max-width: 480px) {
+  .textWel {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  .textLabel1 {
+    font-size: 15px;
+  }
+  .ip4 {
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .ip5 {
+    width: 300px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+}
