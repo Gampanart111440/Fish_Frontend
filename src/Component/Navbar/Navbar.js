@@ -45,8 +45,16 @@ function Navbar() {
             return (
                 <div>
                     <Col align="right">
-                        <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
-                        <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                        {
+                            username !== null ? <div>
+                                <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
+                                <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                            </div> :
+                                <div>
+                                    <h5 className="textName"><span className="textRole1">Admin</span> {name}</h5>
+                                    <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                                </div>
+                        }
                     </Col>
                 </div>
             )
@@ -55,8 +63,16 @@ function Navbar() {
             return (
                 <div>
                     <Col align="right">
-                        <h5 className="textName"><span className="textRole2">Guest user</span> {username}</h5>
-                        <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                        {
+                            username !== null ? <div>
+                                <h5 className="textName"><span className="textRole1">Guest user</span> {username}</h5>
+                                <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                            </div> :
+                                <div>
+                                    <h5 className="textName"><span className="textRole1">Guest user</span> {name}</h5>
+                                    <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                                </div>
+                        }
                     </Col>
                 </div>
             )
