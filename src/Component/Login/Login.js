@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { listAction } from '../../Redux/Reducer'
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
+import firebase from '../Firebase/config'
 import GoogleLogin from 'react-google-login';
 import './login.css';
 
@@ -25,13 +26,24 @@ function Login() {
       localStorage.setItem('datauser', datauser)
       localStorage.setItem('ids', psuPass.id)
     }
-    if (localStorage.getItem('datauser') !== null || localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('datauser') !== null || localStorage.getItem('token') !== null || localStorage.getItem('email') ) {
       history.push('/datafish')
     }
     else {
       history.push('/')
     }
   }, [psuPass])
+
+  const loginF = e => {
+    e.preventDefault()
+    firebase.auth().signInWithEmailAndPassword(userdata.username, userdata.password).then((res) => {
+      localStorage.setItem('email',res.user.email)
+      history.push('/datafish')
+    })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   const sendData = () => {
     if (userdata.username && userdata.password) {
@@ -48,8 +60,6 @@ function Login() {
   }
 
   const responseGoogle = (response) => {
-    console.log(response);
-    
     if (response) {
       const token = response.accessToken
       const name = response.profileObj.givenName
@@ -88,7 +98,10 @@ function Login() {
                 <Button className="bt1" style={{ width: "100%", marginTop: "50px" }}
                   onClick={() => {
                     sendData()
-                  }}>LOGIN</Button>
+                  }}>LOGIN WITH PSU PASSPORT</Button>
+                <br></br>
+                <Button className="bt5" style={{ width: "100%", marginTop: "50px" }}
+                  onClick={loginF}>LOGIN WITH FIREBASE (ADMIN)</Button>
               </FormGroup>
               <div align="center">
                 <GoogleLogin

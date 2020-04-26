@@ -22,6 +22,7 @@ function Navbar() {
             localStorage.removeItem('token')
             localStorage.removeItem('name')
             localStorage.removeItem('username')
+            localStorage.removeItem('email')
             history.push('/')
         }
     }
@@ -41,20 +42,39 @@ function Navbar() {
 
     const showRole = () => {
         let ids = localStorage.getItem('ids')
-        if (ids == 5935512089 || localStorage.getItem('name') == "GAMPANART") {
+        let email = localStorage.getItem('email')
+        if (ids == 5935512089) {
             return (
                 <div>
                     <Col align="right">
-                        {
-                            username !== null ? <div>
-                                <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
-                                <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
-                            </div> :
-                                <div>
-                                    <h5 className="textName"><span className="textRole1">Admin</span> {name}</h5>
-                                    <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
-                                </div>
-                        }
+                        <div>
+                            <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
+                            <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                        </div>
+                    </Col>
+                </div>
+            )
+        }
+        if (localStorage.getItem('name') == "GAMPANART") {
+            return (
+                <div>
+                    <Col align="right">
+                        <div>
+                            <h5 className="textName"><span className="textRole1">Admin</span> {name}</h5>
+                            <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                        </div>
+                    </Col>
+                </div>
+            )
+        }
+        if (localStorage.getItem('email') == 'gampanat10911@gmail.com') {
+            return (
+                <div>
+                    <Col align="right">
+                        <div>
+                            <h5 className="textName"><span className="textRole1">Admin</span> {email}</h5>
+                            <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
+                        </div>
                     </Col>
                 </div>
             )

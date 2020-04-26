@@ -20,9 +20,24 @@
   font-size: 20px;
 }
 .bt1 {
+  background-color: rgb(23, 107, 202);
   margin-top: 20px !important;
   width: 400px !important;
   height: 40px !important;
+  border: none;
+}
+.bt5 {
+  color: rgb(87, 87, 87);
+  background-color: rgb(255, 253, 153);
+  margin-top: 20px !important;
+  width: 400px !important;
+  height: 40px !important;
+  border: none;
+}
+.bt5:hover {
+  color: rgb(87, 87, 87);
+  background-color: rgb(241, 241, 241);
+  border: none;
 }
 .formIP {
   text-align: start;
@@ -52,6 +67,11 @@
     font-size: 15px;
   }
   .bt1 {
+    margin-top: 20px !important;
+    width: 250px !important;
+    height: 40px !important;
+  }
+  .bt5 {
     margin-top: 20px !important;
     width: 250px !important;
     height: 40px !important;
