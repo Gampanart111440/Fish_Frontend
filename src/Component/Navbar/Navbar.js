@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 function Navbar() {
     const ListAction = bindActionCreators(listAction, useDispatch())
-    const psuPass = useSelector(state => state.psuPass)
+    const psuData = useSelector(state => state.psuData)
     const history = useHistory()
     const [username, setUsername] = useState('')
     const [name, setName] = useState('')
 
     const psuLogouts = () => {
         ListAction.psuLogout()
-        if (psuPass.id === "" || localStorage.getItem('token') !== null) {
+        if (psuData.id === "" || localStorage.getItem('token') !== null) {
             localStorage.removeItem('datauser')
             localStorage.removeItem('ids')
             localStorage.removeItem('token')

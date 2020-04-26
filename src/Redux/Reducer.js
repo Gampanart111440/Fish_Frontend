@@ -179,7 +179,7 @@ const loadingReducer = (data = loading, action) => {
 }
 
 const rootReducer = combineReducers({
-    psuPass: loginReducer,
+    psuData: loginReducer,
     formReduc: formReducer,
     fishReduc: fishReducer,
     getFish: getFishReducer,

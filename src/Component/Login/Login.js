@@ -11,7 +11,7 @@ import './login.css';
 function Login() {
   const dispatch = useDispatch()
   const ListAction = bindActionCreators(listAction, dispatch)
-  const psuPass = useSelector(state => state.psuPass)
+  const psuData = useSelector(state => state.psuData)
   const history = useHistory()
   const [userdata, setUser] = useState({
     username: "",
@@ -20,28 +20,29 @@ function Login() {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    if (psuPass.id) {
+    if (psuData.id) {
       history.push('/datafish')
-      let datauser = psuPass.id + " : " + psuPass.name + " " + psuPass.surname
+      let datauser = psuData.id + " : " + psuData.name + " " + psuData.surname
       localStorage.setItem('datauser', datauser)
-      localStorage.setItem('ids', psuPass.id)
+      localStorage.setItem('ids', psuData.id)
     }
-    if (localStorage.getItem('datauser') !== null || localStorage.getItem('token') !== null || localStorage.getItem('email') ) {
+    if (localStorage.getItem('datauser') !== null || localStorage.getItem('token') !== null || localStorage.getItem('email')) {
       history.push('/datafish')
     }
     else {
       history.push('/')
     }
-  }, [psuPass])
+  }, [psuData])
 
   const loginF = e => {
     e.preventDefault()
     firebase.auth().signInWithEmailAndPassword(userdata.username, userdata.password).then((res) => {
-      localStorage.setItem('email',res.user.email)
+      localStorage.setItem('email', res.user.email)
       history.push('/datafish')
     })
       .catch((err) => {
         console.log(err);
+        setMessage(err.message)
       })
   }
 
@@ -52,7 +53,7 @@ function Login() {
     else {
       setMessage("Incorrect user ID or password")
     }
-    if (!psuPass.id) {
+    if (!psuData.id) {
       setTimeout(() => {
         setMessage("Incorrect user ID or password")
       }, 4000)
@@ -120,6 +121,6 @@ function Login() {
   );
 }
 
-const mapStateToProps = state => ({ psuPass: state.psuPass })
+const mapStateToProps = state => ({ psuData: state.psuData })
 
 export default connect(mapStateToProps)(Login);
