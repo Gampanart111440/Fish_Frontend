@@ -89,7 +89,7 @@ function Login() {
                 <div className="formIP">
                   <Label className="textLabel">Username</Label>
                 </div>
-                <Input className="ip1" type="text" name="username" onChange={(e) => setUser({ ...userdata, username: e.target.value })} placeholder="Username" />
+                <Input className="ip1" type="text" name="username" onChange={(e) => setUser({ ...userdata, username: e.target.value })} placeholder="Username/Email" />
                 <div className="formIP">
                   <Label className="textLabel">Password</Label>
                 </div>
