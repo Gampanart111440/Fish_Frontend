@@ -48,8 +48,7 @@ function CardFish() {
     }
 
     const showCard = () => {
-        let ids = localStorage.getItem('ids')
-        if (ids == 5935512089 || localStorage.getItem('name') == "GAMPANART" || localStorage.getItem('email') == 'gampanat10911@gmail.com') {
+        if (localStorage.getItem('name') == "GAMPANART" || localStorage.getItem('email') == 'gampanat10911@gmail.com') {
             return (
                 <Row>
                     {

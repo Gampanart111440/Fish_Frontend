@@ -41,20 +41,7 @@ function Navbar() {
     }, [username])
 
     const showRole = () => {
-        let ids = localStorage.getItem('ids')
         let email = localStorage.getItem('email')
-        if (ids == 5935512089) {
-            return (
-                <div>
-                    <Col align="right">
-                        <div>
-                            <h5 className="textName"><span className="textRole1">Admin</span> {username}</h5>
-                            <Button className="btlogout" color="danger" onClick={psuLogouts}>Logout</Button>
-                        </div>
-                    </Col>
-                </div>
-            )
-        }
         if (localStorage.getItem('name') == "GAMPANART") {
             return (
                 <div>

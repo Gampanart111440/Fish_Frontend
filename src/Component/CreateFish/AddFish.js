@@ -5,7 +5,6 @@ import { listAction } from '../../Redux/Reducer'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import Navbars from '../Navbar/Navbar'
-import firebase from '../Firebase/config'
 import './add_fish.css';
 function AddFish() {
     const ListAction = bindActionCreators(listAction, useDispatch())
@@ -24,9 +23,8 @@ function AddFish() {
 
     useEffect(() => {
         let user = localStorage.getItem('datauser');
-        let ids = localStorage.getItem('ids')
         setUsername(user)
-        if (username !== null && ids == 5935512089 || localStorage.getItem('name') == "GAMPANART" || localStorage.getItem('email') == 'gampanat10911@gmail.com') {
+        if (username !== null && localStorage.getItem('name') == "GAMPANART" || localStorage.getItem('email') == 'gampanat10911@gmail.com') {
             history.push('/addfish')
         }
         else {
